@@ -2,7 +2,7 @@
   <div class="home">
     <SearchBar></SearchBar>
     <div class="left">
-      <LinkBox v-for="link in leftLinks"
+      <LinkBox v-for="link in links"
         :key="link.name"
         :title=link.name
         :links=link.links
@@ -10,7 +10,7 @@
     </div>
     <MainArticle></MainArticle>
     <div class="right">
-      <LinkBox v-for="link in rightLinks"
+      <LinkBox v-for="link in links"
         :key="link.name"
         :title=link.name
         :links=link.links
@@ -30,40 +30,46 @@ import LinkBox from '@/components/LinkBox.vue'
 import MainArticle from '@/components/MainArticle.vue' // @ is an alias to /src
 import { IDictionary } from '@/localization/localization.model'
 import { LocalizationData } from '@/localization/localization'
+import { TPosition } from '@/types'
 
 @Component({
     components: {
         HelloWorld,
         SearchBar,
         LinkBox,
-        MainArticle,
-    },
+        MainArticle
+    }
 })
 export default class HomeView extends Vue {
   private localizationData = LocalizationData.getInstance()
 
   private loc: IDictionary = this.localizationData.localeDictionary
 
-  public get leftLinks(): Array<Record<string, unknown>> {
+  public get links(): Array<Record<string, unknown>> {
       return [{
           name: this.loc.categories,
           links: ['asdad', 'sss'],
+          position: TPosition.LEFT
       }, {
           name: this.loc.names,
           links: ['asdad', 'sss'],
+          position: TPosition.LEFT
+      }, {
+          name: this.loc.newestPosts,
+          links: ['asdad', 'sss'],
+          position: TPosition.RIGHT
+      }, {
+          name: this.loc.archive,
+          links: ['asdad', 'sss'],
+          position: TPosition.RIGHT
+      }, {
+          name: this.loc.recommendedLinks,
+          links: ['asdad', 'sss'],
+          position: TPosition.RIGHT
       }]
   }
 
-  public rightLinks = [{
-      name: this.loc.newestPosts,
-      links: ['asdad', 'sss'],
-  }, {
-      name: this.loc.archive,
-      links: ['asdad', 'sss'],
-  }, {
-      name: this.loc.recommendedLinks,
-      links: ['asdad', 'sss'],
-  }]
+  public rightLinks = []
 }
 </script>
 
