@@ -1,23 +1,24 @@
 module.exports = {
     root: true,
     env: {
-        node: true,
+        node: true
     },
     globals: {
-        Vue: true,
+        Vue: true
     },
     extends: [
         'eslint:recommended',
         'plugin:vue/essential',
         '@vue/airbnb',
-        '@vue/typescript/recommended',
+        '@vue/typescript/recommended'
     ],
     parserOptions: {
-        ecmaVersion: 2020,
+        ecmaVersion: 2020
     },
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-shadow': ['off'],
         indent: ['error', 4],
         'linebreak-style': ['error', 'unix'],
         quotes: ['error', 'single'],
@@ -27,26 +28,26 @@ module.exports = {
             {
                 types: {
                     Function: false,
-                    Object: false,
-                },
-            },
+                    Object: false
+                }
+            }
         ],
         'max-len': [
             'error',
             {
-                code: 140,
-            },
+                code: 140
+            }
         ],
         'no-multiple-empty-lines': [
             'error',
             {
-                max: 1,
-            },
+                max: 1
+            }
         ],
         '@typescript-eslint/object-curly-spacing': ['error', 'always'],
         'array-bracket-spacing': ['error'],
         'no-empty': 'error',
-        'comma-dangle': 'error',
+        'comma-dangle': ['error', 'never'],
         'comma-spacing': 'error',
         eqeqeq: ['error'],
         '@typescript-eslint/explicit-function-return-type': ['warn'],
@@ -58,18 +59,18 @@ module.exports = {
         'no-async-promise-executor': ['error'],
         'padding-line-between-statements': [
             'error',
-            { blankLine: 'always', prev: ['multiline-const', 'multiline-let', 'multiline-var'], next: '*' },
-        ],
+            { blankLine: 'always', prev: ['multiline-const', 'multiline-let', 'multiline-var'], next: '*' }
+        ]
     },
     overrides: [
         {
             files: [
                 '**/__tests__/*.{j,t}s?(x)',
-                '**/tests/unit/**/*.spec.{j,t}s?(x)',
+                '**/tests/unit/**/*.spec.{j,t}s?(x)'
             ],
             env: {
-                mocha: true,
-            },
-        },
-    ],
+                mocha: true
+            }
+        }
+    ]
 }

@@ -11,7 +11,7 @@ import { pl } from './locales/pl'
 // import { sv } from './locales/sv'
 
 export const LocalizationStore: ILocalizationStore = {
-    pl,
+    pl
     // en: en
     // ru: ru,
     // da: da,

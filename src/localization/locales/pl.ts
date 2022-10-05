@@ -5,7 +5,7 @@ export const pl: IDictionary = {
     names: 'Według nazwisk',
     newestPosts: 'Najnowsze posty',
     archive: 'Archiwum',
-    recommendedLinks: 'Polecane linki',
+    recommendedLinks: 'Polecane linki'
 }
 
 export default pl
