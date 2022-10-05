@@ -23,38 +23,46 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue';
-import SearchBar from '@/components/SearchBar.vue';
-import LinkBox from '@/components/LinkBox.vue';
-import MainArticle from '@/components/MainArticle.vue'; // @ is an alias to /src
+import { Component, Vue } from 'vue-property-decorator'
+import HelloWorld from '@/components/HelloWorld.vue'
+import SearchBar from '@/components/SearchBar.vue'
+import LinkBox from '@/components/LinkBox.vue'
+import MainArticle from '@/components/MainArticle.vue' // @ is an alias to /src
+import { IDictionary } from '@/localization/localization.model'
+import { LocalizationData } from '@/localization/localization'
 
 @Component({
-  components: {
-    HelloWorld,
-    SearchBar,
-    LinkBox,
-    MainArticle,
-  },
+    components: {
+        HelloWorld,
+        SearchBar,
+        LinkBox,
+        MainArticle,
+    },
 })
 export default class HomeView extends Vue {
-  public leftLinks = [{
-    name: 'Kategorie',
-    links: ['asdad', 'sss'],
-  }, {
-    name: 'Według nazwisk',
-    links: ['asdad', 'sss'],
-  }]
+  private localizationData = LocalizationData.getInstance()
+
+  private loc: IDictionary = this.localizationData.localeDictionary
+
+  public get leftLinks(): Array<Record<string, unknown>> {
+      return [{
+          name: this.loc.categories,
+          links: ['asdad', 'sss'],
+      }, {
+          name: this.loc.names,
+          links: ['asdad', 'sss'],
+      }]
+  }
 
   public rightLinks = [{
-    name: 'Najnowsze posty',
-    links: ['asdad', 'sss'],
+      name: this.loc.newestPosts,
+      links: ['asdad', 'sss'],
   }, {
-    name: 'Archiwum',
-    links: ['asdad', 'sss'],
+      name: this.loc.archive,
+      links: ['asdad', 'sss'],
   }, {
-    name: 'Polecane linki',
-    links: ['asdad', 'sss'],
+      name: this.loc.recommendedLinks,
+      links: ['asdad', 'sss'],
   }]
 }
 </script>
