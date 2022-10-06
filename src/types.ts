@@ -3,4 +3,9 @@ export enum TPosition {
     RIGHT = 'right'
 }
 
-export default TPosition
+export type TArticle = {
+    title: string
+    date: number
+    author: string
+    text: HTMLElement
+}
