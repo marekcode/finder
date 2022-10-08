@@ -5,7 +5,7 @@ export enum TPosition {
 
 export type TArticle = {
     title: string
-    date: number
+    date: string
     author: string
-    text: HTMLElement
+    text: string
 }
