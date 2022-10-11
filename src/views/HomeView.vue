@@ -1,13 +1,4 @@
 <template>
-  <div class="home">
-    <SearchBar></SearchBar>
-    <div class="left">
-      <LinkBox v-for="link in leftLinks"
-        :key="link.name"
-        :title=link.name
-        :links=link.links
-      ></LinkBox>
-    </div>
     <section class="main">
         <MainArticle :article="example"></MainArticle>
         <nav>
@@ -16,17 +7,6 @@
         </nav>
         <AddComment></AddComment>
     </section>
-    <div class="right">
-      <LinkBox v-for="link in rightLinks"
-        :key="link.name"
-        :title=link.name
-        :links=link.links
-      ></LinkBox>
-    </div>
-    <footer>footer</footer>
-
-    <!--HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/-->
-  </div>
 </template>
 
 <script lang="ts">
@@ -35,9 +15,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import LinkBox from '@/components/LinkBox.vue'
 import MainArticle from '@/components/MainArticle.vue' // @ is an alias to /src
-import { IDictionary } from '@/localization/localization.model'
-import { LocalizationData } from '@/localization/localization'
-import { TArticle, TPosition } from '@/types'
+import { TArticle } from '@/types'
 import AddComment from '@/components/AddComment.vue'
 
 @Component({
@@ -50,13 +28,9 @@ import AddComment from '@/components/AddComment.vue'
     }
 })
 export default class HomeView extends Vue {
-  private localizationData = LocalizationData.getInstance()
+  previousPost = this.$store.state.loc.previousPost
 
-  private loc: IDictionary = this.localizationData.localeDictionary
-
-  previousPost = this.loc.previousPost
-
-  nextPost = this.loc.nextPost
+  nextPost = this.$store.state.loc.nextPost
 
   example: TArticle = {
       title: 'Jak gryźć by ugryźć',
@@ -88,86 +62,12 @@ lacus sed. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt
 ornare. Eget velit aliquet sagittis id consectetur purus ut. Massa enim nec dui nunc mattis enim ut tellus elementum. \
 Penatibus et magnis dis parturient montes nascetur ridiculus. Nec feugiat nisl pretium fusce id.`
   }
-
-  public get links(): Array<Record<string, unknown>> {
-      return [{
-          name: this.loc.categories,
-          links: [{
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }, {
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }],
-          position: TPosition.LEFT
-      }, {
-          name: this.loc.names,
-          links: [{
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }, {
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }],
-          position: TPosition.LEFT
-      }, {
-          name: this.loc.newestPosts,
-          links: [{
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }, {
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }],
-          position: TPosition.RIGHT
-      }, {
-          name: this.loc.archive,
-          links: [{
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }, {
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }],
-          position: TPosition.RIGHT
-      }, {
-          name: this.loc.recommendedLinks,
-          links: [{
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }, {
-              name: 'jakis link',
-              href: 'http://gdzies.pl'
-          }],
-          position: TPosition.RIGHT
-      }]
-  }
-
-  public get leftLinks(): Array<Record<string, unknown>> {
-      return this.links.filter((link: Record<string, unknown>) => link.position === TPosition.LEFT)
-  }
-
-  public get rightLinks(): Array<Record<string, unknown>> {
-      return this.links.filter((link: Record<string, unknown>) => link.position === TPosition.RIGHT)
-  }
 }
 </script>
 
-<style lang="scss">
-.header {
-  grid-area: header;
-}
-
-.left, .right {
-    width: 200px
-}
-
-.left {
-  grid-area: menu;
-}
-
+<style lang="scss" scoped>
 .main {
-  grid-area: main;
+    grid-area: main;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -176,39 +76,11 @@ Penatibus et magnis dis parturient montes nascetur ridiculus. Nec feugiat nisl p
     display: flex;
     justify-content: space-between;
 
- a {
+    a {
         background: gray;
         padding: 6px 12px;
         color: white;
         font-weight: normal;
     }
-}
-
-.right {
-  grid-area: right;
-}
-
-footer {
-  grid-area: footer;
-}
-
-.home {
-  display: grid;
-  grid-template-areas:
-    'header header header header header header'
-    'menu main main main main right'
-    'menu footer footer footer footer right';
-  gap: 25px;
-  background-color: white;
-  padding: 10px;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-.home>div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
 }
 </style>

@@ -27,8 +27,6 @@
 </template>
 
 <script lang="ts">
-import { LocalizationData } from '@/localization/localization'
-import { IDictionary } from '@/localization/localization.model'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
@@ -36,23 +34,19 @@ import { Component, Vue } from 'vue-property-decorator'
     }
 })
 export default class AddComment extends Vue {
-    private localizationData = LocalizationData.getInstance()
+    addComment = this.$store.state.loc.addComment
 
-    private loc: IDictionary = this.localizationData.localeDictionary
+    mailInfo = this.$store.state.loc.mailInfo
 
-    addComment = this.loc.addComment
+    requiredInfo = this.$store.state.loc.requiredInfo
 
-    mailInfo = this.loc.mailInfo
+    comment = this.$store.state.loc.comment
 
-    requiredInfo = this.loc.requiredInfo
+    name = this.$store.state.loc.name
 
-    comment = this.loc.comment
+    mail = this.$store.state.loc.mail
 
-    name = this.loc.name
-
-    mail = this.loc.mail
-
-    link = this.loc.www
+    link = this.$store.state.loc.www
 }
 </script>
 
@@ -62,6 +56,7 @@ export default class AddComment extends Vue {
         flex-direction: column;
         align-items: flex-start;
         font-size: 14px;
+        margin: auto;
     }
 
     h1 {

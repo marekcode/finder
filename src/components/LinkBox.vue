@@ -2,7 +2,7 @@
   <div>
     <header>{{ title }}</header>
     <nav>
-      <a v-for="link in links" :key="link" :href="link.href">
+      <a v-for="link, index in links" :key="index" :href="link.href">
         {{ link.name }}
       </a>
     </nav>
@@ -21,7 +21,7 @@ export default class HomeView extends Vue {
   title!: string
 
   @Prop()
-  links!: Array<Record<string, unknown>>
+  links!: Array<Record<string, string>>
 }
 </script>
 
