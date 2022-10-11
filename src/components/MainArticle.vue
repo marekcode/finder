@@ -1,7 +1,7 @@
 <template>
   <article>
     <h1>{{ formattedArticle.title }}</h1>
-    <author>{{ formattedArticle.author }}</author>
+    <code>{{ formattedArticle.author }}</code>
     <span>{{ formattedArticle.date }}</span>
     <p v-html="formattedArticle.text"></p>
   </article>
@@ -36,10 +36,6 @@ export default class SearchBar extends Vue {
         flex-direction: column;
     }
 
-    h1 {
-        font-size: 20px;
-    }
-
     span {
         font-size: 11px;
         text-align: left;
@@ -54,7 +50,7 @@ export default class SearchBar extends Vue {
         color: #0175ac;
     }
 
-    author {
+    code {
         font-size: 13px;
         display: block;
     }

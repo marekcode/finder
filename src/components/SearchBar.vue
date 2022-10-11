@@ -5,8 +5,6 @@
 </template>
 
 <script lang="ts">
-import { LocalizationData } from '@/localization/localization'
-import { IDictionary } from '@/localization/localization.model'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
@@ -14,17 +12,17 @@ import { Component, Vue } from 'vue-property-decorator'
     }
 })
 export default class SearchBar extends Vue {
-    private localizationData = LocalizationData.getInstance()
-
-    private loc: IDictionary = this.localizationData.localeDictionary
-
     search = ''
 
-    placeholder = this.loc.searchPlaceholder
+    placeholder = this.$store.state.loc.searchPlaceholder
 }
 </script>
 
 <style lang="scss" scoped>
+.header {
+    grid-area: header;
+}
+
 input {
     padding: 10px;
     border-radius: 5px;
